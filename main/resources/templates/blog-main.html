@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <title>Блог сайта</title>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: url(https://picsum.photos/3000/2000/?image=1015);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<!---->
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5">
+    <h1>Блог сайта</h1>
+    <div th:each="el : ${posts}" class="alert alert-info mt-2"> <!--Здесь перебираем данные posts с BlogController и закидываем в el -->
+        <h3 th:text="${el.title}"/> <!-- простое перебирание (el через точку имеет доступ ко всем переменным Post)-->
+        <p th:text="${el.anons}"/>
+        <a th:href="'/blog/' + ${el.id}" class="btn btn-warning">Детальнее</a>
+    </div>
+</div>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+</body>
+</html>
